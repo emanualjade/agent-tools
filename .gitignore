@@ -1,0 +1,6 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Eval/benchmark scratch — kept locally, not published
+.claude/skills/nano-banana-workspace/
