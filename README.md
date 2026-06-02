@@ -10,6 +10,7 @@ under `.claude/skills/<name>/` with a `SKILL.md` (plus reference files where use
 |---|---|
 | **nano-banana** | Building with Google's "Nano Banana" image models on the Gemini API or Vertex AI — Nano Banana 2 (`gemini-3.1-flash-image`) and Nano Banana Pro (`gemini-3-pro-image`): models, resolutions, aspect ratios, grounding, pricing, the `@google/genai` SDK. Includes `references/` for Vertex and the Gemini Developer API. |
 | **gpt-image-2** | Building with OpenAI's image-generation API — the `gpt-image` models: generating/editing images, sizes, quality, pricing, and wiring it into an app. |
+| **stripe-connect** | Working with Stripe Connect platforms & marketplaces — onboarding connected accounts, routing/splitting payments, application fees, payouts, webhooks (v2 thin events), sandbox/CLI testing, and debugging Connect integrations. Includes `references/` (accounts & onboarding, money movement, webhooks, setup & testing, decision guide, doc map). |
 | **shape-idea** | Take a fuzzy, early-stage software idea and shape it, through a light back-and-forth, into a crisp one-page spec. |
 | **idea-refiner** | A lighter conversational helper for teasing out what a fuzzy product/feature idea really means and its key tradeoffs. |
 | **understand-this** | A tutor that makes you genuinely understand the work just done in a session — a feature, fix, PR, or refactor — with incremental teaching and quizzing. |
