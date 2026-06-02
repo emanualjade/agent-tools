@@ -1,0 +1,41 @@
+{
+  "expectations": [
+    {
+      "text": "Uses ai.chats.create(...) + chat.sendMessage(...) to keep image context across turns",
+      "passed": true,
+      "evidence": "ai.chats.create(...) + chat.sendMessage(...); 'the chat object IS the persisted image context'"
+    },
+    {
+      "text": "Passes the uploaded image as an inlineData part (base64 mimeType+data) or Files API",
+      "passed": true,
+      "evidence": "inlineData base64 parts; also notes Files API ai.files.upload + createPartFromUri"
+    },
+    {
+      "text": "States reference-image limit: up to 14 total (Flash up to 10 objects + 4 characters)",
+      "passed": true,
+      "evidence": "'Up to 14 reference images total'; table Flash 10 objects + 4 characters"
+    },
+    {
+      "text": "Uses a correct GA model id (gemini-3.1-flash-image or gemini-3-pro-image), no -preview suffix",
+      "passed": true,
+      "evidence": "EDITOR_MODEL = 'gemini-3.1-flash-image' (GA, no -preview)"
+    },
+    {
+      "text": "config.responseModalities includes IMAGE",
+      "passed": true,
+      "evidence": "responseModalities: ['TEXT','IMAGE']"
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1.0
+  },
+  "timing": {
+    "total_duration_seconds": 60.7
+  },
+  "execution_metrics": {
+    "total_tokens": 35505
+  }
+}

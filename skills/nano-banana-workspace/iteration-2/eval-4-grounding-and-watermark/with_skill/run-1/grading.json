@@ -1,0 +1,41 @@
+{
+  "expectations": [
+    {
+      "text": "Enables grounding via tools: [{ googleSearch: {} }] in config",
+      "passed": true,
+      "evidence": "tools: [{ googleSearch: {} }]"
+    },
+    {
+      "text": "States Web Search grounding works on both Nano Banana 2 and Pro (not Pro-only)",
+      "passed": true,
+      "evidence": "'works on both Nano Banana 2 and Nano Banana Pro'"
+    },
+    {
+      "text": "States every generated image carries an invisible SynthID watermark",
+      "passed": true,
+      "evidence": "'invisible SynthID watermark' on every generated and edited image"
+    },
+    {
+      "text": "States there is NO API flag to disable the SynthID watermark",
+      "passed": true,
+      "evidence": "'there is no API flag to turn it off'"
+    },
+    {
+      "text": "Does not invent a disable parameter; distinguishes consumer 'Gemini sparkle' from always-on SynthID",
+      "passed": true,
+      "evidence": "Separates consumer 'Gemini sparkle' from always-on SynthID; no invented disable param"
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1.0
+  },
+  "timing": {
+    "total_duration_seconds": 31.9
+  },
+  "execution_metrics": {
+    "total_tokens": 33199
+  }
+}

@@ -1,0 +1,1 @@
+For my e-commerce app I need to generate around 50,000 product thumbnails a month plus a few hundred hero banners that have a lot of text on them. Which Nano Banana model should I use for each, roughly what will the images cost, and can I generate the thumbnails at 512px to save money?

@@ -1,0 +1,14 @@
+{
+  "eval_id": 1,
+  "eval_name": "eval-1-vertex-pro-ts-helper",
+  "prompt": "I'm adding an AI image feature to my Next.js app and we run everything on Vertex AI (GCP project 'acme-prod'). Write me a TypeScript helper using @google/genai that generates a 2K, 16:9 image with Nano Banana Pro from a text prompt and saves the resulting PNG to disk. Include the exact model id and the client setup for Vertex.",
+  "assertions": [
+    { "text": "Uses model id 'gemini-3-pro-image' (the current GA id), not a hallucinated name", "passed": null, "evidence": "" },
+    { "text": "Does NOT use 'nano-banana-pro' as a callable model string", "passed": null, "evidence": "" },
+    { "text": "Vertex client init: new GoogleGenAI({ vertexai: true, project, location })", "passed": null, "evidence": "" },
+    { "text": "Sets resolution/ratio under config.imageConfig (imageSize '2K', aspectRatio '16:9') — the shipped SDK field, NOT responseFormat", "passed": null, "evidence": "" },
+    { "text": "responseModalities includes IMAGE", "passed": null, "evidence": "" },
+    { "text": "Reads image bytes from response.candidates[0].content.parts -> part.inlineData.data via Buffer.from(data,'base64')", "passed": null, "evidence": "" },
+    { "text": "Uses GCP/ADC auth for Vertex (not a Gemini API key)", "passed": null, "evidence": "" }
+  ]
+}

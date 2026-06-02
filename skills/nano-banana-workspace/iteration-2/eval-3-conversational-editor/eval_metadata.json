@@ -1,0 +1,12 @@
+{
+  "eval_id": 3,
+  "eval_name": "eval-3-conversational-editor",
+  "prompt": "Help me build a conversational image editor: the user uploads a product photo, then types follow-up tweaks like 'make the background white' or 'add a soft shadow'. Using @google/genai against the Gemini API, how do I keep the image context across turns, and how many reference images can I send in one request? Show the code.",
+  "assertions": [
+    { "text": "Uses ai.chats.create(...) + chat.sendMessage(...) to keep image context across turns", "passed": null, "evidence": "" },
+    { "text": "Passes the uploaded image as an inlineData part (base64 mimeType+data) or Files API", "passed": null, "evidence": "" },
+    { "text": "States reference-image limit: up to 14 total (Flash up to 10 objects + 4 characters)", "passed": null, "evidence": "" },
+    { "text": "Uses a correct GA model id (gemini-3.1-flash-image or gemini-3-pro-image), no -preview suffix", "passed": null, "evidence": "" },
+    { "text": "config.responseModalities includes IMAGE", "passed": null, "evidence": "" }
+  ]
+}

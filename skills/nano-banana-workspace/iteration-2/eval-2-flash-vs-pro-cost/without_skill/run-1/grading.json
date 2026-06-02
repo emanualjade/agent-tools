@@ -1,0 +1,41 @@
+{
+  "expectations": [
+    {
+      "text": "Recommends Nano Banana 2 / gemini-3.1-flash-image for the high-volume thumbnails",
+      "passed": false,
+      "evidence": "Recommends 'Nano Banana (Gemini 2.5 Flash Image)' \u2014 the LEGACY model \u2014 for thumbnails; unaware of Nano Banana 2"
+    },
+    {
+      "text": "Recommends Nano Banana Pro / gemini-3-pro-image for the text-heavy hero banners",
+      "passed": true,
+      "evidence": "Recommends Nano Banana Pro (Gemini 3 Pro Image) for the text-heavy banners"
+    },
+    {
+      "text": "States 512 (0.5K) is Flash-only and Pro cannot generate 512",
+      "passed": false,
+      "evidence": "Claims 512px does NOT save money ('bill a flat per-image token count regardless of output dimensions') \u2014 wrong; unaware 512 is a tier"
+    },
+    {
+      "text": "Uses correct per-image pricing: Flash 512 ~$0.045, Pro 1K/2K ~$0.134",
+      "passed": false,
+      "evidence": "Uses legacy $0.039/image for thumbnails (not Flash 512 $0.045); Pro $0.134 ok but Flash side wrong"
+    },
+    {
+      "text": "Computes a sane monthly thumbnail cost (~$2,250 for 50k at $0.045)",
+      "passed": false,
+      "evidence": "Computes $1,950 from 50k x $0.039 (legacy), not $2,250"
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 4,
+    "total": 5,
+    "pass_rate": 0.2
+  },
+  "timing": {
+    "total_duration_seconds": 54.4
+  },
+  "execution_metrics": {
+    "total_tokens": 72201
+  }
+}

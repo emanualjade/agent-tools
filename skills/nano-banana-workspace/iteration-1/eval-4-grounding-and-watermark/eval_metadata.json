@@ -1,0 +1,12 @@
+{
+  "eval_id": 4,
+  "eval_name": "eval-4-grounding-and-watermark",
+  "prompt": "Two questions for the Nano Banana image API: (1) can it generate an image that bakes in today's actual weather forecast for a city, and if so how do I enable that and which model do I need? (2) do all generated images get a watermark, and can I turn it off?",
+  "assertions": [
+    { "text": "Enables grounding via tools: [{ googleSearch: {} }] in config", "passed": null, "evidence": "" },
+    { "text": "States Web Search grounding works on both Nano Banana 2 and Pro (not Pro-only)", "passed": null, "evidence": "" },
+    { "text": "States every generated image carries an invisible SynthID watermark", "passed": null, "evidence": "" },
+    { "text": "States there is NO API flag to disable the SynthID watermark", "passed": null, "evidence": "" },
+    { "text": "Does not invent a disable parameter; distinguishes consumer 'Gemini sparkle' from always-on SynthID", "passed": null, "evidence": "" }
+  ]
+}
