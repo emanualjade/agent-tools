@@ -37,7 +37,9 @@ anything once it starts, so do all the thinking WITH the user first.
 Keep steps 1–3 lean and conversational. Do not write the spec yourself — that is the build's first step.
 If the user says "just go" / "skip the grill," you may shorten grill to lean depth ONLY when refine
 detected NO one-way-door surface (Detected Surfaces = none) AND no required capability/config is
-un-provisioned. If ANY one-way-door surface (money | auth | data | migrations | external | PII |
+un-provisioned. **Even on the lean path, the hardening decisions — stack, dependencies, data model,
+persistence, auth — must still be user-confirmed or recorded as an explicit assumption ("you pick" counts),
+never silently decided.** If ANY one-way-door surface (money | auth | data | migrations | external | PII |
 destructive) was detected, you MUST still lock its Surface Ruling AND confirm its required
 capabilities/config + the designated environment before launch — that question is non-skippable. Tell the
 user the build cannot ask later and a one-way-door surface left vague becomes an irreversible wrong

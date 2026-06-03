@@ -12,8 +12,10 @@ question at a time.*
 **The whole point:** the atlas build runs **hands-off** and **cannot ask you mid-run** — where it
 lacks a decision it will *assume* and proceed, and for a one-way-door surface it will write an ADR and
 build a *reversible interim* rather than commit. **Your job is to front-load exactly those decisions** so
-the build matches intent instead of guessing. Garbage in, garbage out — this is the highest-leverage
-step in the whole system.
+the build matches intent instead of guessing. **The plan's quality is forged *here*, in this conversation
+with the user — the build only executes what you lock together. Deciding a consequential question *for*
+the user doesn't save time; it skips the one step that makes the plan good.** Garbage in, garbage out —
+this is the highest-leverage step in the whole system.
 
 ## Stance
 
@@ -27,8 +29,18 @@ step in the whole system.
 - Ask **one consequential question at a time**; say **why it matters**; offer a **recommended default**
   when it helps. **Wait** for the answer — never infer from silence, a missing UI, or a failed tool.
 - Pressure-test a vague answer with a **concrete scenario**. Show alternatives only to help the user choose.
-- Grill **only** decisions that change behavior, scope, model shape, risk, or validation. Don't bikeshed
-  reversible trivia — recommend a default and move on.
+- Grill **every** decision that changes behavior, scope, model shape, risk, or validation — one at a time,
+  until you and the user genuinely agree. **Default *only* truly reversible, low-risk trivia.** Never
+  silently decide a consequential or user choice — product intent, scope, risk, ownership, **and especially
+  the engineering hardening: stack, dependencies, data model, persistence, auth.** If you're unsure whether
+  it's trivia, it isn't — ask.
+- **Never draft around a fork.** A working draft of the decision log is **not** a substitute for live
+  questioning. If writing the log surfaces an unresolved consequential fork — *"let me just record the
+  stack / domain model and move on"* — **stop and ask the next question** before recording it. Recording a
+  decision the user never made is the exact failure this step exists to prevent.
+- **Hardening decisions get explicit handling, never a silent default:** stack, dependencies / package
+  installs, runtime, tooling, data model, persistence, auth / identity, session, permissions, ownership.
+  Each must be a *user-confirmed decision* or an *explicitly-accepted assumption* — never inferred.
 - Inspect the repo/context for what's already knowable instead of asking.
 - Treat a detailed kickoff as decision *evidence*, not automatic completion — record what it answered and
   what's still vague.
@@ -45,9 +57,14 @@ is **exhausted**, and only then proceed to the Output + Decision Review. A node 
 Triage each node by *who can answer it*:
 - **Fact** → answerable from the research (`resources/`), repo code, or official sources. **You resolve it**
   and record the evidence — never ask the user a factual question the research already answers.
-- **Tradeoff** → engineering judgement. **Recommend** an answer with a one-line why, and confirm.
+- **Tradeoff** → genuine engineering judgement on a *reversible* call. **Recommend** an answer with a one-line
+  why, then **ask the user to confirm and record their answer — silence is not confirmation.**
 - **Choice** → needs user preference, product intent, scope, risk tolerance, or a business rule. **Ask the
   user** one question.
+- **Hardening / one-way-door** (stack, dependencies, data model, persistence, auth, identity, permissions,
+  ownership, money, migrations, external, destructive) → **always a `user-choice`** (or `factual` only when
+  research/repo genuinely settles it). A recommendation does **not** downgrade the requirement to ask — these
+  may **never** be typed `tradeoff` to slip past the recorded question.
 If an answer opens new consequential nodes, keep walking. **Do not proceed to assemble the launch args while
 any consequential node is unresolved.**
 
@@ -56,8 +73,8 @@ Depth tunes how far you explore *within* a node — `lean` (lock the consequenti
 follow-ons). Depth changes breadth-per-node; it **never** lets a consequential node exit un-exhausted.
 
 **Never assume on a one-way-door surface** — auth, security, privacy, payments/money, destructive data,
-ownership, permissions, compliance, hard-to-reverse architecture, or a newly-added dependency — unless the
-user **explicitly accepts** it. These are precisely what the build treats as CRITICAL / one-way; an
+ownership, permissions, compliance, **stack / runtime / hard-to-reverse architecture**, or a newly-added
+dependency — unless the user **explicitly accepts** it. These are precisely what the build treats as CRITICAL / one-way; an
 un-locked one becomes an ADR + interim, not what you wanted.
 
 ## Priority targets — grill these first (they are what the build would otherwise assume)
@@ -93,15 +110,24 @@ Write the decision log to `atlas/initiatives/<id>/idea-decisions.md`:
 ```md
 # Idea Decisions
 ## Decision Depth                 (lean | standard | deep + why)
+## Decision Tree                  (EVERY consequential node — the anti-gloss spine; one block each:
+                                  ·  Node:           what's being decided
+                                  ·  Type:           factual | tradeoff | user-choice
+                                  ·  Status:         resolved | assumed | deferred | blocked
+                                  ·  Evidence:       (factual) the source/repo/research it was resolved from
+                                  ·  User question:  (user-choice) the exact question asked + the user's answer — REQUIRED for a user-choice; a user-choice with an empty answer is an un-exhausted node, not a decision
+                                  ·  Recommendation: your recommended answer + one-line why
+                                  ·  Follow-on:      new nodes this opened)
 ## Decisions Resolved             (Decision / Why / Rejected / Impact / Revisit-if)
 ## Accepted Assumptions
 ## Deferred Decisions
+## Hardening Decisions            (stack | dependencies | runtime/tooling | data model | persistence | auth/identity | permissions/ownership — each: the decision + "user-confirmed" or "accepted-assumption", never blank/inferred)
 ## Surface Rulings                (per detected surface: the locked rule)
 ## Required Capabilities & Preflight  (per capability: capability | why | provisioned?/waived-with-fallback | how-to-verify-present)
 ## Environments                   (the DEV/click-through env for browser R2 + the TEST env for automated tests; per-env caveats; which verification runs where — see below)
 ## Domain Language / Model        (core nouns; each qualifier → field/enum/state/permission call)
 ## Success Checks                 (binary; repo-verifiable vs live/human)
-## Questions Asked & Answered     (each consequential decision: the question put + the user's answer, or "user explicitly accepted default X")
+## Questions Asked & Answered     (the `user-choice` rows of the Decision Tree, surfaced — one source of truth: the question put + the user's answer, or "user explicitly accepted default X"; don't re-decide here)
 ## Decision Review               (Reviewer / Verdict: pass | accepted-risk / Must-Fix count — see "Decision Review" below)
 ## Open / Blocking                (None, or the blocking question)
 ```
@@ -144,8 +170,14 @@ repoContext:    <stack + key paths + conventions, or "greenfield empty directory
 
 Before launch, run a **read-only Decision Review** of `idea-decisions.md` — a fresh pass (a separate
 reviewer, or a clean read-only re-read) that does **not** edit the log. It checks:
-- every detected surface has a Surface Ruling, and **every consequential node is exhausted** (resolved /
+- every detected surface has a Surface Ruling, and **every `## Decision Tree` node is exhausted** (resolved /
   assumed / deferred / blocked) — none left vague;
+- **every `user-choice` node carries the question asked + the user's actual answer** — a user-choice that
+  was silently defaulted (empty answer) is a Must-Fix, not a decision;
+- **every `## Hardening Decision` is user-confirmed or an explicit accepted-assumption** — none blank or
+  inferred (especially stack, data model, persistence, auth) — **and each one marked `user-confirmed` traces
+  to a recorded question + answer** (in `## Questions Asked & Answered` or its Decision-Tree `user-choice`
+  row); a `user-confirmed` label with no recorded answer is a Must-Fix;
 - no `inferred-from-context` on a one-way-door surface;
 - **every research open question** (from `resources/index.md`) is turned into a decision, accepted
   assumption, deferral, or blocker — none silently dropped;
@@ -161,7 +193,11 @@ launch-blocker is the surface-lock + preflight gate below — the irreversible-s
 Before launch, resolve `## Open / Blocking` against this gate. **BLOCKER — do NOT call the Workflow tool
 if** (i) any refine-detected surface lacks an explicit **Surface Ruling** or user-accepted assumption, **OR**
 (ii) any required capability/config on a **domain/external** surface is un-provisioned **AND**
-un-waived (no `waived-with-fallback`). An empty or placeholder `## Surface Rulings` while
+un-waived (no `waived-with-fallback`), **OR** (iii) a **hardening one-way-door** decision — **stack, data
+model, persistence, or auth** — is **blank or inferred** in `## Hardening Decisions` (silently defaulted,
+not user-confirmed and not an explicitly-accepted assumption). *Delegation counts as a decision:* if the
+user explicitly said "you pick" (recorded as an accepted-assumption with that answer), it is not
+blank/inferred and does not block. An empty or placeholder `## Surface Rulings` while
 `Detected Surfaces` is non-`none` = **BLOCKED, not launchable**. On BLOCKED, write the unresolved item into
 `## Open / Blocking`, **present it to the user as the blocking question, and wait** — do not launch, do not
 infer, do not let the build "discover" it mid-run. A needed tool/credential/env-var the build discovers
