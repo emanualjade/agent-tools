@@ -1,10 +1,10 @@
 ---
 name: grill-idea
-description: Pressure-test a refined idea until the consequential decisions are locked — especially the ones the autonomous build would otherwise guess. Produces the decision log + atlas build launch args. Step 2 of the front door.
+description: Pressure-test a refined idea until the consequential decisions are locked — especially the ones the autonomous build would otherwise guess. Produces the decision log + atlas build launch args. Step 3 of the front door.
 allowed-tools: Read Write Edit Grep Glob WebFetch WebSearch
 ---
 
-# Grill Idea — atlas front door (step 2 of 2)
+# Grill Idea — atlas front door (step 3 of 3)
 
 Pressure-test the refined idea until the consequential decisions are explicit — *interactively, one
 question at a time.*
@@ -17,6 +17,10 @@ step in the whole system.
 
 ## Stance
 
+- **Read the research first.** If `atlas/initiatives/<id>/resources/index.md` exists, read it (and the
+  reports it lists) **before** pressure-testing — grill on the grounded facts, and turn each finding /
+  unknown into a decision, accepted assumption, deferral, or blocker. Don't ask the user a factual
+  question the research already answers.
 - Ask **one consequential question at a time**; say **why it matters**; offer a **recommended default**
   when it helps. **Wait** for the answer — never infer from silence, a missing UI, or a failed tool.
 - Pressure-test a vague answer with a **concrete scenario**. Show alternatives only to help the user choose.

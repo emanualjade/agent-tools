@@ -4,12 +4,12 @@ description: Turn a vague idea into a clear first useful outcome — separating 
 allowed-tools: Read Write Edit Grep Glob WebFetch WebSearch
 ---
 
-# Refine Idea — atlas front door (step 1 of 2)
+# Refine Idea — atlas front door (step 1 of 3)
 
 Turn a vague idea into a clear **first useful outcome**, *interactively, with the user*. This is the
 conversational front door to the autonomous **atlas build** — the build cannot ask the user
-anything once it starts, so the thinking happens **here**. Your output feeds `grill-idea` (step 2) and
-ultimately the build's `args.idea`.
+anything once it starts, so the thinking happens **here**. Your output feeds `research-idea` (step 2),
+then `grill-idea`, and ultimately the build's `args.idea`.
 
 ## Stance
 
@@ -63,7 +63,8 @@ Pick a short kebab-case `<id>` from the idea and confirm it + the framing with t
 
 ## Handoff
 
-Hand the refined idea to **`grill-idea`**. Do **not** write a spec, choose a stack, or start building.
+Hand the refined idea to **`research-idea`** (step 2). Do **not** write a spec, choose a stack, or start
+building.
 **Seed `PROJECT_LANGUAGE.md` at the repo root if absent** (header-only: `# Project Language` +
 `## Terms` — never placeholder terms); read it before settling durable terms and append any new
 stable term. Do **not**
