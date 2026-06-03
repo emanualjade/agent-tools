@@ -1,1 +1,0 @@
-Two questions for the Nano Banana image API: (1) can it generate an image that bakes in today's actual weather forecast for a city, and if so how do I enable that and which model do I need? (2) do all generated images get a watermark, and can I turn it off?

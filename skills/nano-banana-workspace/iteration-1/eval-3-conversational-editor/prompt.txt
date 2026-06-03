@@ -1,1 +1,0 @@
-Help me build a conversational image editor: the user uploads a product photo, then types follow-up tweaks like 'make the background white' or 'add a soft shadow'. Using @google/genai against the Gemini API, how do I keep the image context across turns, and how many reference images can I send in one request? Show the code.

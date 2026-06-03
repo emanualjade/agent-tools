@@ -1,1 +1,0 @@
-I'm adding an AI image feature to my Next.js app and we run everything on Vertex AI (GCP project 'acme-prod'). Write me a TypeScript helper using @google/genai that generates a 2K, 16:9 image with Nano Banana Pro from a text prompt and saves the resulting PNG to disk. Include the exact model id and the client setup for Vertex.
