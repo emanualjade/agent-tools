@@ -146,4 +146,4 @@ Then watch with `/workflows` and report back when it finishes (built / assumptio
 obstructions / ADRs).
 
 Do **not** write the spec yourself — that is the build's S0. Do not turn the decision log into a spec.
-If `PROJECT_LANGUAGE.md` exists, reconcile new durable nouns into it.
+Seed `PROJECT_LANGUAGE.md` at the repo root if absent (header-only); reconcile new durable nouns into it.

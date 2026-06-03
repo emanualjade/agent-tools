@@ -71,6 +71,7 @@ const P = {
   objective: () => `${P.initDir()}/acceptance-criteria.md`, // the durable external objective
   finalVerification: () => `${P.initDir()}/verification.md`,
   adrDir: () => `${P.initDir()}/adr`,
+  resourcesDir: () => `${P.initDir()}/resources`, // scannable front-door grounding: research files + on-request design/schema docs
   phaseDir: (pid) => `${P.initDir()}/phases/${pid}`,
   phaseSpec: (pid) => `${P.phaseDir(pid)}/phase-spec.md`,
   phaseVerification: (pid) => `${P.phaseDir(pid)}/verification.md`,
@@ -538,7 +539,7 @@ async function runPhase(ph, singlePhase) {
 // ---------------------------------------------------------------------------
 phase('Bootstrap')
 await runStep({ step: 'S0', label: 'bootstrap', phaseGroup: 'Bootstrap', schema: SCHEMA_OK,
-  task: `BOOTSTRAP ONLY (do not write the spec yet). Ensure ${P.initDir()} and ${P.adrDir()} exist; if PROJECT_LANGUAGE.md is absent at the repo root create it with a "# Project Language" + "## Terms" stub; do not overwrite anything existing. Return ok:true.` }).catch(() => null)
+  task: `BOOTSTRAP ONLY (do not write the spec yet). Ensure ${P.initDir()}, ${P.adrDir()}, and ${P.resourcesDir()} exist; if PROJECT_LANGUAGE.md is absent at the repo root create it with a "# Project Language" + "## Terms" stub; do not overwrite anything existing. ${P.resourcesDir()} is the front-door grounding folder (research + on-request design/schema docs) — leave any existing contents untouched. Return ok:true.` }).catch(() => null)
 log(`Workspace ready at ${P.initDir()}`)
 
 let upstreamRouteBacks = 0
