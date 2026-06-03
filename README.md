@@ -14,6 +14,7 @@ under `.claude/skills/<name>/` with a `SKILL.md` (plus reference files where use
 | **shape-idea** | Take a fuzzy, early-stage software idea and shape it, through a light back-and-forth, into a crisp one-page spec. |
 | **idea-refiner** | A lighter conversational helper for teasing out what a fuzzy product/feature idea really means and its key tradeoffs. |
 | **understand-this** | A tutor that makes you genuinely understand the work just done in a session — a feature, fix, PR, or refactor — with incremental teaching and quizzing. |
+| **atlas-workflow** | A Claude dev workflow that turns a vague idea into shipped code: refine + grill the idea with you, then run the autonomous **atlas** build (spec → phases → plan → implement → verify). Includes an `atlas-engine/` with disciplines, steps, and the build workflow. |
 
 The reference-style skills (`nano-banana`, `gpt-image-2`) are built docs-as-source-of-truth:
 every concrete claim (model IDs, fields, limits, pricing) is verified against the official
