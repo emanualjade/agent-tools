@@ -7,6 +7,8 @@ with you in chat — but everything from spec onward is one autonomous, self-cor
 - **Engine:** `.claude/workflows/atlas.mjs`
 - **Contract:** [`DESIGN.md`](./DESIGN.md) — the authoritative architecture + interfaces
 - **Modules:** `disciplines/` (cross-cutting), `surfaces/` (modality packs), `steps/` (the pipeline)
+- **Why it's built this way:** [`research/`](./research) — the 8-dimension failure-mode study + 3-design
+  judge panel each guardrail traces back to. Reference/provenance, not read at runtime.
 
 > Built by researching *how LLM coding agents actually fail* and designing each guardrail to counter
 > a specific failure mode — then adversarially reviewing the result.
@@ -135,6 +137,7 @@ genuinely useful members of the **same** mechanism. Adding a modality = dropping
 atlas-engine/
 ├── DESIGN.md                 # the authoritative contract
 ├── README.md                 # this file
+├── research/                 # provenance: the 8-dimension study + judge panel this was built from
 ├── disciplines/              # risk-tiering, read-before-write, adjective-noun, canonical-research,
 │                             #   obstruction-loop, honest-verification, altitude-stepback, two-hats, arch-debt-adr
 ├── surfaces/                 # _registry + web-backend, mobile, data-pipeline, infra-as-code, cli-devtool

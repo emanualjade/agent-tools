@@ -5,8 +5,8 @@ instruction, and the engine itself must conform to it. It is intentionally conci
 lives in the module files; this file fixes the **architecture, interfaces, and invariants** so
 parallel authoring stays coherent.
 
-Built from an 8-dimension failure-mode study + 3-design judge panel: each guardrail counters a
-specific way LLM coding agents fail.
+Built from an 8-dimension failure-mode study + 3-design judge panel (`research/`): each guardrail
+counters a specific way LLM coding agents fail.
 
 ---
 
