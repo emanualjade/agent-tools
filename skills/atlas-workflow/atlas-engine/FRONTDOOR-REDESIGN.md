@@ -1,7 +1,9 @@
-# Atlas Front Door — Redesign Plan (draft for review)
+# Atlas Front Door — Redesign Plan
 
 A plain-English plan for making Atlas's front door deeper and research-grounded.
-Nothing here is built yet — this is the thing to poke holes in.
+
+> **Status: implemented.** All phases (A–D) are built, adversarially reviewed, and committed
+> (`c94ab5e` A · `9a471f2` B · `66cd007` C+D). This doc remains the design reference.
 
 Reference system: **Strike** (`~/Sites/strike`, read-only). Strike already added a mandatory
 pre-grill research step (changelog v0.10.9); this is largely catching Atlas up to that.
