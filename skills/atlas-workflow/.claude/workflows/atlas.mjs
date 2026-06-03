@@ -201,11 +201,13 @@ YOUR INSTRUCTION SET — read and follow EXACTLY:
 It composes discipline + surface modules under ${cfg.rootDir}/disciplines and ${cfg.rootDir}/surfaces;
 read the ones it references. Those files are authoritative.
 
-INITIATIVE CONTEXT (from a prior refine + grill done with the user):
+INITIATIVE CONTEXT (from a prior refine + research + grill done with the user):
   Idea / outcome: ${initiative.idea || '(none)'}
   Decisions / accepted assumptions / rejected paths: ${initiative.decisions || '(none)'}
   Constraints: ${initiative.constraints || '(none)'}
   Repo context: ${initiative.repoContext || '(infer from the working directory)'}
+  Front-door research (audited, if present): scan ${P.resourcesDir()}/ — read its index.md + any report whose
+    name fits your work, USE it, and only research afresh what's missing. The descriptive filenames are the menu.
 
 TASK:
 ${task}

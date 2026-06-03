@@ -21,6 +21,9 @@ step in the whole system.
   reports it lists) **before** pressure-testing — grill on the grounded facts, and turn each finding /
   unknown into a decision, accepted assumption, deferral, or blocker. Don't ask the user a factual
   question the research already answers.
+- **A material unknown is a research gap, not a user question.** If a consequential decision needs a fact
+  that isn't in `resources/` (a missing API / model / domain detail), don't guess and don't quiz the user —
+  **route back to `research-idea`** to research it, then continue grilling on the result.
 - Ask **one consequential question at a time**; say **why it matters**; offer a **recommended default**
   when it helps. **Wait** for the answer — never infer from silence, a missing UI, or a failed tool.
 - Pressure-test a vague answer with a **concrete scenario**. Show alternatives only to help the user choose.
@@ -30,12 +33,27 @@ step in the whole system.
 - Treat a detailed kickoff as decision *evidence*, not automatic completion — record what it answered and
   what's still vague.
 
-## Decision depth (default: standard)
+## How to grill — walk the decision tree until each node is exhausted
 
-- `lean` — lock the consequential decisions; assume reversible low-risk details.
-- `standard` — pressure-test major product / domain / data / validation / risk decisions enough to spec
-  without guessing.
-- `deep` — examine tradeoffs, edge cases, and follow-on decisions for important nodes.
+Grill is a **loop, not a fixed-size pass.** Keep walking the consequential decision tree until every node
+is **exhausted**, and only then proceed to the Output + Decision Review. A node is exhausted only when it is:
+- **resolved** — the user, or a fact from research/repo, settled it;
+- **explicitly assumed** — recorded under `## Accepted Assumptions` (never silently);
+- **deferred** — with a named later stage / owner; or
+- **blocked** — recorded under `## Open / Blocking`.
+
+Triage each node by *who can answer it*:
+- **Fact** → answerable from the research (`resources/`), repo code, or official sources. **You resolve it**
+  and record the evidence — never ask the user a factual question the research already answers.
+- **Tradeoff** → engineering judgement. **Recommend** an answer with a one-line why, and confirm.
+- **Choice** → needs user preference, product intent, scope, risk tolerance, or a business rule. **Ask the
+  user** one question.
+If an answer opens new consequential nodes, keep walking. **Do not proceed to assemble the launch args while
+any consequential node is unresolved.**
+
+Depth tunes how far you explore *within* a node — `lean` (lock the consequential, assume reversible trivia) ·
+`standard` (pressure-test major product/domain/data/risk decisions) · `deep` (tradeoffs, edge cases,
+follow-ons). Depth changes breadth-per-node; it **never** lets a consequential node exit un-exhausted.
 
 **Never assume on a one-way-door surface** — auth, security, privacy, payments/money, destructive data,
 ownership, permissions, compliance, hard-to-reverse architecture, or a newly-added dependency — unless the
@@ -84,6 +102,7 @@ Write the decision log to `atlas/initiatives/<id>/idea-decisions.md`:
 ## Domain Language / Model        (core nouns; each qualifier → field/enum/state/permission call)
 ## Success Checks                 (binary; repo-verifiable vs live/human)
 ## Questions Asked & Answered     (each consequential decision: the question put + the user's answer, or "user explicitly accepted default X")
+## Decision Review               (Reviewer / Verdict: pass | accepted-risk / Must-Fix count — see "Decision Review" below)
 ## Open / Blocking                (None, or the blocking question)
 ```
 
@@ -120,6 +139,22 @@ decisions:      <Decisions Resolved + Surface Rulings + Accepted Assumptions + r
 constraints:    <tech / deadlines / non-negotiables, or "none">
 repoContext:    <stack + key paths + conventions, or "greenfield empty directory">
 ```
+
+## Decision Review (before launch)
+
+Before launch, run a **read-only Decision Review** of `idea-decisions.md` — a fresh pass (a separate
+reviewer, or a clean read-only re-read) that does **not** edit the log. It checks:
+- every detected surface has a Surface Ruling, and **every consequential node is exhausted** (resolved /
+  assumed / deferred / blocked) — none left vague;
+- no `inferred-from-context` on a one-way-door surface;
+- **every research open question** (from `resources/index.md`) is turned into a decision, accepted
+  assumption, deferral, or blocker — none silently dropped;
+- success checks are binary, and capabilities are provisioned-or-waived.
+
+Record it under `## Decision Review` (Reviewer / Verdict: `pass` | `accepted-risk` / Must-Fix count). On any
+Must-Fix, **fix it or ask the user one more question, then re-review — loop until Verdict is pass / accepted-risk
+with Must-Fix 0.** This is a quality loop, **not a dead-end**: it never hard-stops the flow. (The only
+launch-blocker is the surface-lock + preflight gate below — the irreversible-surface safety net.)
 
 ## Surface-lock + preflight gate (launch-blocking)
 

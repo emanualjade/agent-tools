@@ -30,6 +30,14 @@ Do not pad it. The one-line skip is a first-class outcome, not a confession.
 
 ## 2. What to research when triggered
 
+**First, check the front-door research.** Before researching anything afresh, scan
+`atlas/initiatives/<initiativeId>/resources/` — its `index.md` digest and the descriptively-named reports.
+The refine→research→grill front door may have already researched this exact topic and **audited it against
+primary sources**. If a relevant report exists, **use it and cite it** (`resources/<id>.md`, carrying its underlying primary
+source + version) as the SOURCE — only research afresh what is genuinely missing, stale for the pinned
+version (§3), or absent from the folder.
+This is audited grounding; do not redo it from scratch.
+
 Answer the three questions that map to the three failure modes. Skip a row only if its surface did not fire.
 
 1. **"What does the standard / the incumbent already do?"** — For a money/dates/auth/protocol problem, find the established correct approach (what Stripe does for money + refunds, what RFC/ISO/OAuth/the platform mandates for the boundary). Goal: a *vetted library or standard pattern*, never a hand-roll. This is the canonical guardrail in the relevant pack made concrete.

@@ -13,11 +13,13 @@ those here is the failure this step guards against (it pre-commits decisions S1/
 real context).
 
 **Inputs:** `args` = `{ initiativeId, idea, decisions, constraints?, repoContext? }`, **plus the
-front-door artifacts when they exist**: `atlas/initiatives/<initiativeId>/refined-idea.md` and
-`idea-decisions.md`. The refine/grill conversation already happened upstream (DESIGN §12) — **read
-those two files first** (they hold the full decision log: surface rulings, accepted assumptions,
-rejected paths) and treat them as authoritative, with the `args` summary as fallback/agreement-check.
-Do not re-litigate the decisions.
+front-door artifacts when they exist**: `atlas/initiatives/<initiativeId>/refined-idea.md`,
+`idea-decisions.md`, **and the audited research under `resources/`** (`resources/index.md` + its
+reports). The refine/research/grill conversation already happened upstream (DESIGN §12) — **read the
+decision files first** (they hold the full decision log: surface rulings, accepted assumptions, rejected
+paths) and treat them as authoritative, with the `args` summary as fallback/agreement-check. **Scan
+`resources/` and read any report relevant to the spec** — it is grounded, audited fact to build on, not
+re-derive. Do not re-litigate the decisions.
 
 ---
 
