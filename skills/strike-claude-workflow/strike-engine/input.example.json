@@ -1,0 +1,12 @@
+{
+  "initiativeId": "csv-export",
+  "initiativeName": "CSV export for the billing dashboard",
+  "idea": "Let billing admins export the current filtered invoice table to a CSV file from the dashboard, so they can reconcile in spreadsheets. The export must respect the active filters and column order the user is currently looking at.",
+  "decisions": "ACCEPTED: server-side generation (stream from the existing invoice query, not client-side from the rendered DOM) so large accounts work and totals match the source of truth. ACCEPTED: filename `invoices-<ISO-date>.csv`. ACCEPTED: only the columns currently visible are exported, in their on-screen order. REJECTED: XLSX in v1 (CSV only). REJECTED: emailing the file (synchronous download only). OPEN-LATER: pagination beyond 50k rows.",
+  "constraints": "Stack: Next.js + TypeScript, Postgres via Prisma. Reuse the existing `invoiceFilters` query builder. Money values must be exported as decimal strings, never floats. Must not introduce a new CSV dependency if the repo already has one.",
+  "repoContext": "Dashboard table lives in app/(dash)/billing/invoices/. The server query is in lib/billing/invoiceQuery.ts. Auth/permission gate is requireBillingAdmin().",
+
+  "maxFixAttempts": 3,
+  "maxRouteBacks": 4,
+  "maxSplitsPerPhase": 6
+}
