@@ -27,9 +27,15 @@ export const meta = {
 // ---------------------------------------------------------------------------
 // Config + inputs
 // ---------------------------------------------------------------------------
-const a = args || {}
+// `args` can arrive as a parsed object OR as a JSON-encoded string (the harness
+// serializes object args in some launch paths, e.g. background/headless builds).
+// Normalize to an object so every a.* read works — otherwise initiativeId/idea come
+// back undefined, the build defaults to id "initiative" with an empty idea, and the
+// front-door id split blocks the persistence phases.
+let a = args || {}
+if (typeof a === 'string') { try { a = JSON.parse(a) || {} } catch { a = {} } }
 const cfg = {
-  rootDir: a.rootDir || '/Users/cracklehat/Sites/workflow-exploration/atlas-engine',
+  rootDir: a.rootDir || '/Users/cracklehat/Sites/agent-tools/skills/atlas-workflow/atlas-engine',
   maxFixAttempts: a.maxFixAttempts ?? 3,
   maxRouteBacks: a.maxRouteBacks ?? 4,        // per slice
   maxSplitsPerPhase: a.maxSplitsPerPhase ?? 6,

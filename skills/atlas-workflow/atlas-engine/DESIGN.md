@@ -5,9 +5,8 @@ instruction, and the engine itself must conform to it. It is intentionally conci
 lives in the module files; this file fixes the **architecture, interfaces, and invariants** so
 parallel authoring stays coherent.
 
-Derived from `atlas-engine/research/` (8-dimension failure-mode research + 3-design judge panel).
-v1 (the faithful port at `.claude/workflows/atlas-build-engine.mjs` + `atlas-engine/`) is
-preserved as reference; v2 supersedes it.
+Built from an 8-dimension failure-mode study + 3-design judge panel: each guardrail counters a
+specific way LLM coding agents fail.
 
 ---
 
@@ -368,8 +367,3 @@ v2 is **two layers**, split by who can talk to the human:
   front door is a separate interactive layer rather than a workflow step.
 
 This is the full original-Atlas shape (refine → grill → build → verify) mapped onto the right layers.
-
-## Migration from v1
-
-v1 stays in place (`.claude/workflows/atlas-build-engine.mjs`, `atlas-engine/`) as reference. When v2
-is verified on a real feature it becomes the default and v1 can be archived.

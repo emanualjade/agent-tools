@@ -7,11 +7,9 @@ with you in chat — but everything from spec onward is one autonomous, self-cor
 - **Engine:** `.claude/workflows/atlas.mjs`
 - **Contract:** [`DESIGN.md`](./DESIGN.md) — the authoritative architecture + interfaces
 - **Modules:** `disciplines/` (cross-cutting), `surfaces/` (modality packs), `steps/` (the pipeline)
-- **Research it's built on:** `research/` (8-dimension failure-mode study + 3-design judge panel)
-- **v1 (reference):** `.claude/workflows/atlas-build-engine.mjs` + `atlas-engine/`
 
 > Built by researching *how LLM coding agents actually fail* and designing each guardrail to counter
-> a specific failure mode — then adversarially reviewing the result. See `research/principles-and-audit.txt`.
+> a specific failure mode — then adversarially reviewing the result.
 
 ---
 
@@ -87,7 +85,7 @@ You don't run JS — the front door drives it. End to end:
   "repoContext":    "<optional: stack, key paths, conventions>",
 
   // engine knobs (defaults shown)
-  "rootDir":               "/Users/cracklehat/Sites/workflow-exploration/atlas-engine",
+  "rootDir":               "/Users/cracklehat/Sites/agent-tools/skills/atlas-workflow/atlas-engine",
   "maxFixAttempts":        3,
   "maxRouteBacks":         4,
   "maxSplitsPerPhase":     6,
@@ -136,7 +134,6 @@ genuinely useful members of the **same** mechanism. Adding a modality = dropping
 atlas-engine/
 ├── DESIGN.md                 # the authoritative contract
 ├── README.md                 # this file
-├── research/                 # the study + judge panel this was built from
 ├── disciplines/              # risk-tiering, read-before-write, adjective-noun, canonical-research,
 │                             #   obstruction-loop, honest-verification, altitude-stepback, two-hats, arch-debt-adr
 ├── surfaces/                 # _registry + web-backend, mobile, data-pipeline, infra-as-code, cli-devtool
@@ -159,10 +156,3 @@ atlas-engine/
   negative probes, which is a strong but not infinite defense.
 - **Modality depth varies.** Web/backend is mandatory-deep; the other packs are real but shallower —
   extend them as you use those stacks.
-
----
-
-## Migration from v1
-
-v1 stays in place as reference. The seam is unchanged (refine + grill in chat). Once v2 has a verified
-real-feature run under its belt, it becomes the default and v1 can be archived.
