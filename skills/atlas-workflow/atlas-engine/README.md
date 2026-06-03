@@ -112,9 +112,10 @@ You don't run JS — the front door drives it. End to end:
    verify-driven retries, revert-and-reset across agent calls, graceful degradation on exhaustion.
 2. **Agent prompts (always):** every step self-applies its disciplines and reports structurally
    (obstruction, surfaces, ladder rung, per-criterion verdicts) so the orchestrator can route.
-3. **Hooks (optional, opt-in):** `hooks/` ships a `PostToolUse` hook that writes a stall-signal file
-   the engine reads *if present* — true per-tool-call mechanical enforcement. The engine runs fully
-   without it; it's global to the session, so enable deliberately.
+3. **Hooks (optional, opt-in):** `hooks/README.md` provides a ready-to-paste `PostToolUse` hook
+   (script + settings snippet) that writes a stall-signal file the engine reads *if present* — true
+   per-tool-call mechanical enforcement. The engine runs fully without it; it's global to the
+   session, so enable deliberately.
 
 ---
 

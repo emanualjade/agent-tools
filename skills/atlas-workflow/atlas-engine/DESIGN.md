@@ -311,8 +311,9 @@ Three layers, decreasing necessity:
    (the engine has no filesystem access; splitter agents persist replacement `slice.md` stubs).
 2. **Agent prompts (always):** every step self-applies its disciplines and **reports structurally**
    (obstruction, surfaces, ladderReached, per-criterion verdicts) so the orchestrator can act.
-3. **Hooks (optional, opt-in):** `hooks/` ships a `PostToolUse` hook + settings snippet that
-   fingerprints edits and writes a **stall-signal file** the engine reads if present. The engine
+3. **Hooks (optional, opt-in):** `hooks/README.md` provides a ready-to-paste `PostToolUse` hook
+   (script + settings snippet) that fingerprints edits and writes a **stall-signal file** the engine
+   reads if present. The engine
    must run fully **without** hooks and simply gain sharper mid-build detection **with** them. Hooks
    are never required and never assumed.
 
