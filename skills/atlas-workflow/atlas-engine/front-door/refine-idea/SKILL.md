@@ -13,9 +13,18 @@ then `grill-idea`, and ultimately the build's `args.idea`.
 
 ## Stance
 
-- **Brainstorm and clarify — do not decide.** No stack, persistence, auth, scope details, or
-  architecture here; those are grill's and the spec's job.
-- Expand the fuzz into a crisp framing, then **confirm it with the user**. Propose; don't impose.
+- **Brainstorm and clarify — do not decide.** No stack, persistence, auth, **domain mechanics**
+  (rounding, proration, tax handling, refund rules…), scope details, or architecture here; those are
+  research's to ground and grill's to lock.
+- Expand the fuzz into a crisp framing, then **confirm it with the user**. Propose the **what** (the
+  outcome and shape); never the **how** of a domain mechanic — *propose, don't impose, and don't pre-answer.*
+- **Never pre-answer a consequential or domain decision — route it, don't default it.** When a decision is
+  consequential or touches a domain / one-way-door surface (money, accounting, auth, data, migrations,
+  external, PII, destructive), do **not** propose a mechanic or "sound default" here — *even if the user
+  defers it to you.* Record it as a **Research Candidate** (if it needs grounding) and an **Open Question**
+  for grill, and say so plainly: *"this needs grounding — research will ground it, grill will lock it."*
+  Proposing a money/accounting mechanic in refine pre-empts the research meant to ground it and anchors a
+  guess. You may default only **reversible, low-stakes trivia** the user clearly doesn't care about.
 - Ask only the few questions that change the outcome, target, or risk. **Lean.**
 - **Fresh-context bar:** the refined idea must stand on its own — a fresh reader (and the build's S0)
   must understand it without the chat transcript.
@@ -25,12 +34,15 @@ then `grill-idea`, and ultimately the build's `args.idea`.
 
 1. Separate **explicit facts** (what the user actually said) from **assumptions** (what you're inferring).
 2. Name the **target** — the user / operator / system and the painful moment or opportunity.
-3. Propose the **first useful outcome** — the smallest version that is actually useful.
+3. Propose the **first useful outcome** — the smallest version that is actually useful; describe its
+   *shape and outcome*, not the *mechanic* of any detected surface (route those to steps 6–7).
 4. Name **constraints** and **first-version non-goals**.
 5. Flag **detected surfaces** — money, auth/identity, persistent data, migrations, external services,
    PII, destructive actions. These are what the build treats as high-risk / one-way, so they become
    grill's priority targets. (None is a fine answer.)
-6. List **open questions** — the consequential forks for grill to resolve.
+6. List **open questions** — the consequential forks for grill to resolve. **Anything consequential the
+   user defers to you lands here** (and in Research Candidates if it needs grounding) — never resolve it
+   with a proposed default.
 7. Surface **research candidates** — the things worth grounding *before* grill: third-party APIs /
    models / SDKs / new dependencies, **and** solved-problem domains the build shouldn't wing (money,
    accounting, commerce, refunds, coupons). Name them as candidates — **do not do the deep research
